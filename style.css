@@ -1,0 +1,1486 @@
+/* ================================================================
+   style.css — Abuja Hair Doctor
+   Organised in sections so it's easy to find any style.
+   ================================================================ */
+
+
+/* ================================================================
+   1. CSS VARIABLES (the "palette card")
+   Think of these like named paint colours. Change the value once
+   here and every element that uses it updates automatically.
+   ================================================================ */
+:root {
+  --black:        #080808;
+  --deep:         #0e0e0e;
+  --surface:      #141414;
+  --card:         #1a1a1a;
+  --border:      #2a2a2a;
+  --gold:         #c9a84c;
+  --gold-light:   #e8c97a;
+  --gold-muted:   #6b5524;
+  --white:        #f5f0e8;
+  --muted:        #a39e99;  /* FIXED: Improved from #7a7570 for better contrast */
+  --accent:       #3a2d1a;
+
+  --font-display: 'Cinzel', serif;
+  --font-body:    'Cormorant Garamond', serif;
+  --font-mono:    'Space Mono', monospace;
+}
+
+
+/* ================================================================
+   2. GLOBAL RESET
+   Clears the different default spacings browsers add on their own.
+   box-sizing: border-box means padding is included in width/height.
+   ================================================================ */
+*, *::before, *::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  /* Makes anchor links (#story, #booking etc.) scroll smoothly */
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: var(--black);
+  color: var(--white);
+  font-family: var(--font-body);
+  font-size: 18px;
+  line-height: 1.7;
+  /* Prevents a horizontal scrollbar from appearing on mobile */
+  overflow-x: hidden;
+}
+
+
+/* ================================================================
+   3. CUSTOM SCROLLBAR (only in Chrome/Edge/Safari)
+   ================================================================ */
+::-webkit-scrollbar        { width: 4px; }
+::-webkit-scrollbar-track  { background: var(--black); }
+::-webkit-scrollbar-thumb  { background: var(--gold-muted); border-radius: 2px; }
+
+
+/* ================================================================
+   4. UTILITY / HELPER CLASSES
+   These are small reusable classes you can add to any element.
+   ================================================================ */
+
+/* Centres content and limits max width */
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 2rem;
+}
+
+/* Gives each section breathing room top and bottom */
+.section { padding: 7rem 0; }
+
+/* Background helpers */
+.bg-deep { background: var(--deep); }
+.text-center { text-align: center; }
+
+/* Gold coloured text */
+.gold { color: var(--gold); }
+
+/* The thin gold horizontal line used as a decorative separator */
+.divider {
+  width: 60px;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--gold), transparent);
+  margin: 1.5rem 0;
+}
+/* When you add .center to a .divider it centres itself */
+.divider.center { margin: 1.5rem auto; }
+
+/* Fade-in animation — elements start invisible and slide up */
+.fade-in {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 0.7s ease, transform 0.7s ease;
+}
+/* JavaScript adds this class when the element scrolls into view */
+.fade-in.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+
+/* ================================================================
+   5. NOISE TEXTURE OVERLAY
+   Creates a subtle film-grain effect across the whole page.
+   pointer-events: none means you can still click through it.
+   ================================================================ */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0; /* shorthand for top:0, right:0, bottom:0, left:0 */
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+  pointer-events: none;
+  z-index: 9999;
+  opacity: 0.5;
+}
+
+
+/* ================================================================
+   6. BUTTONS
+   Two button styles: .btn-primary (gold filled) and .btn-ghost (outlined)
+   ================================================================ */
+.btn-primary {
+  display: inline-block;
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--black);
+  background: var(--gold);
+  padding: 1rem 2.5rem;
+  text-decoration: none;
+  position: relative;
+  overflow: hidden;
+  transition: all 0.3s ease;
+}
+/* The shimmer hover effect — a lighter layer slides in from the left */
+.btn-primary::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: var(--gold-light);
+  transform: translateX(-100%);
+  transition: transform 0.3s ease;
+}
+.btn-primary:hover::before { transform: translateX(0); }
+/* The text sits on top of the shimmer layer */
+.btn-primary span { position: relative; z-index: 1; }
+
+.btn-ghost {
+  display: inline-block;
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--gold);
+  border: 1px solid var(--gold-muted);
+  padding: 1rem 2.5rem;
+  text-decoration: none;
+  transition: all 0.3s ease;
+}
+.btn-ghost:hover {
+  background: rgba(201,168,76,0.08);
+  border-color: var(--gold);
+}
+
+/* Section eyebrow labels (small uppercase text above headings) */
+.eyebrow {
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
+  letter-spacing: 0.35em;
+  text-transform: uppercase;
+  color: var(--gold);
+}
+
+/* Section headers used across multiple sections */
+.section-header { text-align: center; margin-bottom: 4rem; }
+.section-header .eyebrow { margin-bottom: 0.8rem; display: block; }
+.section-header h2 {
+  font-family: var(--font-display);
+  font-size: clamp(2rem, 4vw, 3.5rem);
+  font-weight: 600;
+  color: var(--white);
+}
+
+
+/* ================================================================
+   7. NAVIGATION
+   ================================================================ */
+nav {
+  position: fixed; /* stays at top even when you scroll */
+  top: 0; left: 0; right: 0;
+  z-index: 100;
+  padding: 1.2rem 0;
+  background: linear-gradient(to bottom, rgba(8,8,8,0.98), rgba(8,8,8,0.7));
+  backdrop-filter: blur(12px); /* blurs the content behind the nav */
+  border-bottom: 1px solid rgba(201, 168, 76, 0.15);
+  transition: all 0.4s ease;
+}
+
+.nav-inner {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 2rem;
+}
+
+.nav-logo {
+  font-family: var(--font-display);
+  font-size: 1rem;
+  letter-spacing: 0.25em;
+  color: var(--gold);
+  text-transform: uppercase;
+  text-decoration: none;
+}
+
+.nav-links {
+  display: flex;
+  gap: 2.5rem;
+  list-style: none;
+}
+
+.nav-links a {
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--muted);
+  text-decoration: none;
+  transition: color 0.3s ease;
+  position: relative;
+}
+/* Underline that grows on hover */
+.nav-links a::after {
+  content: '';
+  position: absolute;
+  bottom: -4px; left: 0;
+  width: 0; height: 1px;
+  background: var(--gold);
+  transition: width 0.3s ease;
+}
+.nav-links a:hover         { color: var(--gold); }
+.nav-links a:hover::after  { width: 100%; }
+
+.nav-cta {
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--black);
+  background: var(--gold);
+  padding: 0.6rem 1.4rem;
+  text-decoration: none;
+  transition: background 0.3s ease, transform 0.2s ease;
+}
+.nav-cta:hover {
+  background: var(--gold-light);
+  transform: translateY(-1px);
+}
+
+/* Hamburger button — hidden on desktop, shown on mobile */
+.nav-toggle {
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  gap: 5px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 4px;
+}
+.nav-toggle span {
+  display: block;
+  width: 24px;
+  height: 1px;
+  background: var(--gold);
+  transition: transform 0.3s ease, opacity 0.3s ease;
+}
+/* When menu is open, animate the 3 bars into an X shape */
+.nav-toggle.open span:nth-child(1) { transform: translateY(6px) rotate(45deg); }
+.nav-toggle.open span:nth-child(2) { opacity: 0; }
+.nav-toggle.open span:nth-child(3) { transform: translateY(-6px) rotate(-45deg); }
+
+
+/* ================================================================
+   8. HERO SECTION
+   ================================================================ */
+#hero {
+  /* FIXED: Using Flexbox to properly position stat strip without overlap */
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  position: relative;
+  overflow: hidden;
+  /* Pushes content below the fixed nav bar */
+  padding-top: 80px;
+  padding-bottom: 3rem;
+}
+
+/* Dark gradient background with subtle gold glow */
+.hero-bg {
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse 60% 60% at 70% 50%, rgba(201,168,76,0.06) 0%, transparent 70%),
+    radial-gradient(ellipse 40% 80% at 85% 50%, rgba(201,168,76,0.04) 0%, transparent 60%),
+    linear-gradient(135deg, #080808 0%, #0e0e0e 50%, #080808 100%);
+}
+
+/* Decorative vertical gold lines on the right side */
+.hero-lines {
+  position: absolute;
+  right: 0; top: 0; bottom: 0;
+  width: 45%;
+  border-left: 1px solid rgba(201,168,76,0.12);
+}
+.hero-lines::before {
+  content: '';
+  position: absolute;
+  left: 20%; top: 0; bottom: 0;
+  border-left: 1px solid rgba(201,168,76,0.06);
+}
+
+/* The main photo frame on the right */
+.hero-image-frame {
+  position: absolute;
+  right: 5%;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 38%;
+  aspect-ratio: 3/4;
+  border: 1px solid rgba(201,168,76,0.25);
+  overflow: hidden;
+}
+/* Placeholder until a real photo is added */
+.hero-image-placeholder {
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(160deg, #1a1510 0%, #0a0805 60%, #1a1209 100%);
+  display: flex;
+  align-items: flex-end;
+  padding: 2rem;
+  position: relative;
+}
+.hero-image-placeholder::before {
+  content: '[ SIGNATURE PHOTO ]';
+  position: absolute;
+  top: 50%; left: 50%;
+  transform: translate(-50%, -50%);
+  font-family: var(--font-mono);
+  font-size: 0.6rem;
+  letter-spacing: 0.2em;
+  color: var(--gold-muted);
+  opacity: 0.5;
+  white-space: nowrap;
+}
+.hero-image-tag {
+  font-family: var(--font-mono);
+  font-size: 0.6rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--gold);
+  border: 1px solid var(--gold-muted);
+  padding: 0.4rem 0.8rem;
+}
+
+/* The text content on the left */
+.hero-content {
+  position: relative;
+  z-index: 2;
+  max-width: 55%;
+  /* FIXED: Added flex-grow to allow proper spacing */
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.hero-eyebrow {
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
+  letter-spacing: 0.35em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 1.5rem;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+/* The short gold line before the eyebrow text */
+.hero-eyebrow::before {
+  content: '';
+  display: block;
+  width: 30px; height: 1px;
+  background: var(--gold);
+}
+
+.hero-title {
+  font-family: var(--font-display);
+  /* clamp(min, preferred, max) — font scales with screen width */
+  font-size: clamp(3rem, 6vw, 5.5rem);
+  font-weight: 900;
+  line-height: 1.0;
+  letter-spacing: -0.02em;
+  color: var(--white);
+  margin-bottom: 1.5rem;
+}
+/* -webkit-text-stroke creates hollow/outlined text — a luxury design trick */
+.hero-title .outline {
+  -webkit-text-stroke: 1px var(--gold);
+  color: transparent;
+}
+
+.hero-tagline {
+  font-size: 1.2rem;
+  font-weight: 300;
+  font-style: italic;
+  color: var(--muted);
+  max-width: 420px;
+  margin-bottom: 2.5rem;
+  line-height: 1.8;
+}
+
+.hero-actions {
+  display: flex;
+  gap: 1.2rem;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+/* Stat strip at the bottom of the hero */
+.hero-stat-strip {
+  /* FIXED: Removed absolute positioning to prevent overlap */
+  position: relative;
+  z-index: 2;
+}
+.hero-stat-inner {
+  display: flex;
+  gap: 3rem;
+  flex-wrap: wrap;
+}
+.hero-stat {
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+}
+.stat-number {
+  font-family: var(--font-display);
+  font-size: 1.8rem;
+  color: var(--gold);
+  font-weight: 600;
+}
+.stat-label {
+  font-family: var(--font-mono);
+  font-size: 0.55rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+
+/* ================================================================
+   9. MARQUEE STRIP
+   The endlessly scrolling gold band of text.
+   ================================================================ */
+.marquee-strip {
+  background: var(--gold);
+  padding: 0.8rem 0;
+  overflow: hidden;
+  white-space: nowrap;
+}
+.marquee-inner {
+  display: inline-flex;
+  gap: 3rem;
+  /* This animation moves the content leftward forever */
+  animation: marquee 25s linear infinite;
+}
+@keyframes marquee {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+.marquee-item {
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: var(--black);
+  display: inline-flex;
+  align-items: center;
+  gap: 1.5rem;
+}
+.marquee-item::after {
+  content: '✦';
+  font-size: 0.5rem;
+}
+
+
+/* ================================================================
+   10. STORY SECTION
+   ================================================================ */
+.story-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 6rem;
+  align-items: center;
+}
+
+.story-image-block { position: relative; }
+
+.story-img-main {
+  width: 100%;
+  aspect-ratio: 4/5;
+  background: linear-gradient(145deg, #1a1510 0%, #0a0805 100%);
+  border: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.story-img-main span {
+  font-family: var(--font-mono);
+  font-size: 0.6rem;
+  color: var(--gold-muted);
+  letter-spacing: 0.15em;
+  opacity: 0.6;
+}
+
+/* The overlapping smaller accent box in the bottom-right corner */
+.story-img-accent {
+  position: absolute;
+  bottom: -2rem;
+  right: -2rem;
+  width: 55%;
+  aspect-ratio: 1;
+  background: var(--accent);
+  border: 1px solid var(--gold-muted);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.3rem;
+  padding: 1.5rem;
+}
+.accent-number {
+  font-family: var(--font-display);
+  font-size: 3rem;
+  color: var(--gold);
+  font-weight: 900;
+  line-height: 1;
+}
+.accent-label {
+  font-family: var(--font-mono);
+  font-size: 0.55rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--muted);
+  text-align: center;
+}
+
+.story-text .section-eyebrow {
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 1rem;
+}
+.story-text h2 {
+  font-family: var(--font-display);
+  font-size: clamp(2rem, 3.5vw, 3rem);
+  font-weight: 600;
+  color: var(--white);
+  line-height: 1.2;
+  margin-bottom: 0.5rem;
+}
+.story-text p {
+  color: var(--muted);
+  font-size: 1.05rem;
+  font-weight: 300;
+  margin-bottom: 1.2rem;
+}
+.story-text blockquote {
+  border-left: 2px solid var(--gold);
+  padding: 0.8rem 1.5rem;
+  margin: 2rem 0;
+  background: rgba(201,168,76,0.04);
+}
+.story-text blockquote p {
+  font-style: italic;
+  font-size: 1.15rem;
+  color: var(--white);
+  margin: 0;
+}
+.story-text blockquote cite {
+  font-family: var(--font-mono);
+  font-size: 0.6rem;
+  letter-spacing: 0.15em;
+  color: var(--gold);
+  text-transform: uppercase;
+  margin-top: 0.5rem;
+  display: block;
+}
+
+
+/* ================================================================
+   11. SERVICES SECTION
+   ================================================================ */
+.services-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  /* gap: 1px on a coloured background creates visible grid lines */
+  gap: 1px;
+  background: var(--border);
+  border: 1px solid var(--border);
+}
+
+.service-card {
+  background: var(--surface);
+  padding: 3rem 2.5rem;
+  position: relative;
+  overflow: hidden;
+  transition: background 0.4s ease;
+}
+/* Gold line that grows along the bottom on hover */
+.service-card::before {
+  content: '';
+  position: absolute;
+  bottom: 0; left: 0; right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, var(--gold), transparent);
+  transform: scaleX(0);
+  transition: transform 0.4s ease;
+}
+.service-card:hover             { background: var(--card); }
+.service-card:hover::before     { transform: scaleX(1); }
+
+.service-number {
+  font-family: var(--font-display);
+  font-size: 0.7rem;
+  color: var(--gold-muted);
+  letter-spacing: 0.2em;
+  margin-bottom: 1.5rem;
+}
+.service-icon { font-size: 1.5rem; margin-bottom: 1.2rem; }
+.service-card h3 {
+  font-family: var(--font-display);
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: var(--white);
+  margin-bottom: 0.8rem;
+  letter-spacing: 0.03em;
+}
+.service-card p {
+  font-size: 0.95rem;
+  color: var(--muted);
+  font-weight: 300;
+  line-height: 1.7;
+  margin-bottom: 1.5rem;
+}
+.service-badge {
+  font-family: var(--font-mono);
+  font-size: 0.55rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--gold);
+  border: 1px solid var(--gold-muted);
+  padding: 0.3rem 0.7rem;
+  display: inline-block;
+}
+
+/* VIP card spans the full 3-column width, laid out in a row */
+.service-card.vip {
+  grid-column: span 3;
+  background: linear-gradient(135deg, #1a1510 0%, var(--surface) 100%);
+  display: flex;
+  gap: 3rem;
+  align-items: center;
+}
+.vip-badge {
+  font-family: var(--font-display);
+  font-size: 3.5rem;
+  color: var(--gold);
+  opacity: 0.15;
+  font-weight: 900;
+  flex-shrink: 0; /* prevents it from shrinking */
+}
+
+
+/* ================================================================
+   12. AVAILABILITY BANNER
+   ================================================================ */
+.availability-banner {
+  background: var(--gold);
+  padding: 2.5rem 0;
+}
+.availability-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 2rem;
+  flex-wrap: wrap;
+}
+.avail-text h3 {
+  font-family: var(--font-display);
+  font-size: 1.8rem;
+  color: var(--black);
+  font-weight: 900;
+}
+.avail-text p {
+  font-size: 1rem;
+  color: var(--accent);
+  font-style: italic;
+  margin-top: 0.2rem;
+}
+.avail-badge {
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+  background: var(--black);
+  padding: 0.8rem 1.5rem;
+}
+/* The pulsing green dot that signals "we're open" */
+.avail-dot {
+  width: 8px; height: 8px;
+  border-radius: 50%;
+  background: #4caf50;
+  animation: pulse 2s infinite;
+}
+@keyframes pulse {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50%       { opacity: 0.6; transform: scale(1.4); }
+}
+.avail-badge span {
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--gold);
+}
+
+
+/* ================================================================
+   13. AUTHORITY / REVIEWS SECTION
+   ================================================================ */
+.authority-grid {
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  gap: 6rem;
+  align-items: start;
+}
+
+.rating-display {
+  font-family: var(--font-display);
+  font-size: 4rem;
+  font-weight: 900;
+  color: var(--gold);
+  line-height: 1;
+}
+.star-row { display: flex; gap: 0.3rem; margin: 1rem 0; }
+.star { color: var(--gold); font-size: 1.1rem; }
+.rating-sub {
+  font-family: var(--font-mono);
+  font-size: 0.6rem;
+  letter-spacing: 0.2em;
+  color: var(--muted);
+  text-transform: uppercase;
+}
+.authority-heading {
+  font-family: var(--font-display);
+  font-size: 1.8rem;
+  font-weight: 600;
+  color: var(--white);
+  line-height: 1.3;
+  margin-top: 1.5rem;
+}
+.authority-sub {
+  color: var(--muted);
+  font-size: 0.95rem;
+  margin-top: 1rem;
+  font-weight: 300;
+}
+
+.press-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
+}
+.press-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  padding: 2rem;
+  transition: border-color 0.3s ease;
+}
+.press-card:hover { border-color: var(--gold-muted); }
+.quote-mark {
+  font-family: var(--font-display);
+  font-size: 4rem;
+  color: var(--gold);
+  opacity: 0.2;
+  line-height: 0.8;
+  margin-bottom: 0.5rem;
+}
+.press-card p {
+  font-style: italic;
+  font-size: 1rem;
+  color: var(--white);
+  font-weight: 300;
+  line-height: 1.7;
+  margin-bottom: 1rem;
+}
+.press-source {
+  font-family: var(--font-mono);
+  font-size: 0.6rem;
+  letter-spacing: 0.15em;
+  color: var(--gold);
+  text-transform: uppercase;
+}
+
+
+/* ================================================================
+   14. GALLERY SECTION
+   ================================================================ */
+
+/* The asymmetric grid layout */
+.gallery-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-template-rows: 250px 250px;
+  gap: 4px;
+}
+/* First item is big — spans 2 columns AND 2 rows */
+.gallery-item:nth-child(1) { grid-column: span 2; grid-row: span 2; }
+/* Fourth item spans 2 columns */
+.gallery-item:nth-child(4) { grid-column: span 2; }
+
+.gallery-item {
+  background: var(--card);
+  overflow: hidden;
+  position: relative;
+  cursor: pointer;
+}
+.gallery-placeholder {
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(145deg, #1a1510, #0a0805);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.5s ease;
+}
+/* Slight zoom on hover */
+.gallery-item:hover .gallery-placeholder { transform: scale(1.03); }
+.gallery-placeholder span {
+  font-family: var(--font-mono);
+  font-size: 0.55rem;
+  color: var(--gold-muted);
+  letter-spacing: 0.1em;
+  opacity: 0.4;
+}
+/* Dark overlay that fades in on hover */
+.gallery-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(0,0,0,0.8) 0%, transparent 60%);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  display: flex;
+  align-items: flex-end;
+  padding: 1.5rem;
+}
+.gallery-item:hover .gallery-overlay { opacity: 1; }
+.gallery-overlay span {
+  font-family: var(--font-mono);
+  font-size: 0.6rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--gold);
+}
+.gallery-cta { text-align: center; margin-top: 2.5rem; }
+
+
+/* ================================================================
+   15. INSTAGRAM SECTION
+   ================================================================ */
+.social-sub {
+  color: var(--muted);
+  font-size: 1rem;
+  max-width: 480px;
+  margin: 0 auto;
+  font-weight: 300;
+  font-style: italic;
+}
+.insta-grid {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 3px;
+  margin: 2.5rem 0;
+}
+.insta-cell {
+  aspect-ratio: 1; /* makes each cell perfectly square */
+  background: var(--card);
+  border: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: border-color 0.3s ease;
+}
+.insta-cell:hover { border-color: var(--gold-muted); }
+.insta-cell span {
+  font-family: var(--font-mono);
+  font-size: 0.5rem;
+  color: var(--gold-muted);
+  letter-spacing: 0.1em;
+  opacity: 0.5;
+}
+.insta-cta-wrap { text-align: center; }
+.instagram-cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 1rem;
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--gold);
+  text-decoration: none;
+  border: 1px solid var(--gold-muted);
+  padding: 1rem 2rem;
+  transition: all 0.3s ease;
+}
+.instagram-cta:hover {
+  background: rgba(201,168,76,0.08);
+  border-color: var(--gold);
+}
+
+
+/* ================================================================
+   16. BOOKING / CONTACT SECTION
+   ================================================================ */
+#booking {
+  position: relative;
+  overflow: hidden;
+}
+#booking::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse 70% 60% at 50% 50%, rgba(201,168,76,0.05) 0%, transparent 70%);
+  pointer-events: none;
+}
+.booking-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 6rem;
+  align-items: start;
+}
+
+.booking-eyebrow {
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 0.8rem;
+  display: block;
+}
+.booking-heading {
+  font-family: var(--font-display);
+  font-size: clamp(2rem, 3.5vw, 3rem);
+  font-weight: 600;
+  color: var(--white);
+  line-height: 1.2;
+}
+.booking-sub {
+  color: var(--muted);
+  font-size: 1rem;
+  font-weight: 300;
+  margin-bottom: 2.5rem;
+}
+
+.contact-details { display: flex; flex-direction: column; gap: 1.5rem; }
+.contact-item { display: flex; gap: 1.2rem; align-items: flex-start; }
+.contact-icon {
+  width: 40px; height: 40px;
+  border: 1px solid var(--gold-muted);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1rem;
+  flex-shrink: 0;
+  color: var(--gold);
+}
+.contact-info label {
+  font-family: var(--font-mono);
+  font-size: 0.55rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--gold);
+  display: block;
+  margin-bottom: 0.3rem;
+}
+.contact-info p {
+  color: var(--white);
+  font-size: 0.95rem;
+  font-weight: 300;
+}
+
+/* The right-side booking form card */
+.booking-form {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  padding: 3rem;
+}
+.booking-form h3 {
+  font-family: var(--font-display);
+  font-size: 1.3rem;
+  color: var(--white);
+  margin-bottom: 0.5rem;
+}
+.form-sub {
+  font-family: var(--font-mono);
+  font-size: 0.6rem;
+  letter-spacing: 0.15em;
+  color: var(--muted);
+  text-transform: uppercase;
+  margin-bottom: 2rem;
+  display: block;
+}
+.form-group { margin-bottom: 1.2rem; }
+.form-group label {
+  font-family: var(--font-mono);
+  font-size: 0.6rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--muted);
+  display: block;
+  margin-bottom: 0.4rem;
+}
+/* Styling the form inputs — we remove browser defaults and apply ours */
+.form-group input,
+.form-group select,
+.form-group textarea {
+  width: 100%;
+  background: var(--card);
+  border: 1px solid var(--border);
+  color: var(--white);
+  font-family: var(--font-body);
+  font-size: 1rem;
+  padding: 0.8rem 1rem;
+  outline: none;
+  transition: border-color 0.3s ease;
+  appearance: none; /* removes browser's default dropdown arrow */
+}
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus { border-color: var(--gold-muted); }
+.form-group textarea { resize: vertical; min-height: 100px; }
+
+/* Two inputs side by side (first name / last name) */
+.form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+
+.submit-btn {
+  width: 100%;
+  background: var(--gold);
+  color: var(--black);
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  border: none;
+  padding: 1rem;
+  cursor: pointer;
+  transition: background 0.3s ease;
+  margin-top: 0.5rem;
+}
+.submit-btn:hover { background: var(--gold-light); }
+
+.whatsapp-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.8rem;
+  width: 100%;
+  background: #25D366;
+  color: white;
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  text-decoration: none;
+  padding: 1rem;
+  margin-top: 1rem;
+  transition: background 0.3s ease;
+}
+.whatsapp-btn:hover { background: #20bc5a; }
+
+
+/* ================================================================
+   17. FOOTER
+   ================================================================ */
+footer {
+  background: var(--deep);
+  border-top: 1px solid var(--border);
+  padding: 4rem 0 2rem;
+}
+.footer-grid {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr 1fr;
+  gap: 3rem;
+  margin-bottom: 3rem;
+}
+.footer-brand .logo {
+  font-family: var(--font-display);
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: var(--gold);
+  letter-spacing: 0.2em;
+  display: block;
+  margin-bottom: 1rem;
+}
+.footer-brand p {
+  font-size: 0.9rem;
+  color: var(--muted);
+  font-weight: 300;
+  max-width: 260px;
+}
+.footer-divider { margin-top: 1.5rem; }
+
+.footer-col h4 {
+  font-family: var(--font-mono);
+  font-size: 0.6rem;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 1.2rem;
+}
+.footer-col ul { list-style: none; }
+.footer-col ul li { margin-bottom: 0.6rem; }
+.footer-col ul li a {
+  font-size: 0.9rem;
+  color: var(--muted);
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+.footer-col ul li a:hover { color: var(--white); }
+
+.footer-bottom {
+  border-top: 1px solid var(--border);
+  padding-top: 1.5rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+.footer-bottom p {
+  font-family: var(--font-mono);
+  font-size: 0.6rem;
+  letter-spacing: 0.1em;
+  color: var(--muted);
+}
+
+.social-links { display: flex; gap: 1rem; margin-top: 1rem; }
+.social-links a {
+  font-family: var(--font-mono);
+  font-size: 0.6rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--muted);
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+.social-links a:hover { color: var(--gold); }
+
+
+/* ================================================================
+   18. RESPONSIVE DESIGN
+   This is where we tell the browser "when the screen is smaller
+   than X pixels wide, use these styles instead."
+
+   We use three breakpoints:
+     — Tablet:  max-width 1024px  (iPads, small laptops)
+     — Mobile:  max-width  768px  (phones in landscape)
+     — Small:   max-width  480px  (phones in portrait)
+   ================================================================ */
+
+
+/* ---- TABLET (screens up to 1024px wide) ---- */
+@media (max-width: 1024px) {
+
+  /* Reduce section padding so content isn't too spread out */
+  .section { padding: 5rem 0; }
+
+  /* 2-column services grid (was 3) */
+  .services-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  /* VIP card now spans only 2 columns */
+  .service-card.vip {
+    grid-column: span 2;
+  }
+
+  /* Stack the authority section vertically */
+  .authority-grid {
+    grid-template-columns: 1fr;
+    gap: 3rem;
+  }
+
+  /* Footer becomes 2 columns */
+  .footer-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  /* Gallery: simpler 3-column layout */
+  .gallery-grid {
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: 220px 220px;
+  }
+
+  /* Instagram grid: 4 columns */
+  .insta-grid {
+    grid-template-columns: repeat(4, 1fr);
+  }
+  /* Hide last insta cell so it fills evenly */
+  .insta-cell:last-child { display: none; }
+}
+
+
+/* ---- MOBILE (screens up to 768px wide) ---- */
+@media (max-width: 768px) {
+
+  body { font-size: 16px; }
+
+  .section { padding: 4rem 0; }
+  .container { padding: 0 1.2rem; }
+
+  /* --- NAVIGATION ---
+     Show the hamburger button, hide the desktop link row
+  */
+  .nav-toggle { display: flex; }
+  .nav-cta    { display: none; } /* hide Book Now button to save space */
+
+  .nav-links {
+    /* FIXED: Using transform instead of display:none for smooth animation */
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    position: absolute;
+    top: 100%; left: 0; right: 0;
+    background: rgba(8,8,8,0.98);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border);
+    padding: 1rem 0;
+    /* Start hidden off-screen */
+    transform: translateY(-100%);
+    opacity: 0;
+    pointer-events: none;
+    transition: transform 0.4s ease, opacity 0.4s ease;
+  }
+  /* JavaScript adds .open to show the menu */
+  .nav-links.open {
+    transform: translateY(0);
+    opacity: 1;
+    pointer-events: auto;
+  }
+
+  .nav-links li { width: 100%; }
+  .nav-links a {
+    display: block;
+    padding: 0.9rem 2rem;
+    font-size: 0.75rem;
+    border-bottom: 1px solid rgba(201,168,76,0.05);
+  }
+  /* Remove the animated underline on mobile (not needed) */
+  .nav-links a::after { display: none; }
+
+  /* --- HERO ---
+     FIXED: Instead of hiding the image, convert to background on mobile
+  */
+  #hero {
+    /* Add subtle background gradient as image placeholder */
+    background: 
+      linear-gradient(to bottom, rgba(8,8,8,0.85), rgba(8,8,8,0.75)),
+      radial-gradient(ellipse 80% 60% at 50% 40%, rgba(201,168,76,0.08) 0%, transparent 70%);
+  }
+
+  .hero-image-frame {
+    /* Keep it visible but repositioned */
+    position: relative;
+    width: 100%;
+    max-width: 400px;
+    margin: 2rem auto 0;
+    right: auto;
+    top: auto;
+    transform: none;
+    order: 3; /* Moves it below the text content */
+  }
+
+  #hero .container:first-of-type {
+    order: 1;
+    flex: 1;
+    display: flex;
+    align-items: center;
+  }
+
+  .hero-lines { display: none; }
+  .hero-content     { max-width: 100%; }
+
+  .hero-title { font-size: clamp(2.2rem, 10vw, 3.5rem); }
+  .hero-tagline { font-size: 1rem; }
+
+  .hero-stat-strip { bottom: 1.5rem; }
+  .hero-stat-inner {
+    gap: 1.5rem;
+    flex-wrap: wrap;
+  }
+  .stat-number { font-size: 1.4rem; }
+
+  /* --- STORY ---
+     Stack image and text vertically
+  */
+  .story-grid {
+    grid-template-columns: 1fr;
+    gap: 4rem;
+  }
+  /* Reduce the overlapping accent box so it doesn't overflow */
+  .story-img-accent {
+    bottom: -1rem;
+    right: -0.5rem;
+    width: 45%;
+  }
+  .accent-number { font-size: 2rem; }
+
+  /* --- SERVICES ---
+     1 card per row, VIP full width
+  */
+  .services-grid {
+    grid-template-columns: 1fr;
+    background: transparent;
+    border: none;
+    gap: 1rem;
+  }
+  .service-card {
+    border: 1px solid var(--border);
+  }
+  .service-card.vip {
+    grid-column: span 1;
+    flex-direction: column;
+    gap: 1rem;
+  }
+  .vip-badge { font-size: 2rem; }
+
+  /* --- AVAILABILITY BANNER --- */
+  .availability-inner {
+    flex-direction: column;
+    text-align: center;
+  }
+  .avail-text h3 { font-size: 1.3rem; }
+  .avail-badge   { width: 100%; justify-content: center; }
+
+  /* --- PRESS GRID --- */
+  .press-grid {
+    grid-template-columns: 1fr;
+  }
+
+  /* --- GALLERY ---
+     Simple 2-column grid, remove the fancy spanning
+  */
+  .gallery-grid {
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: auto;
+  }
+  .gallery-item:nth-child(1) { grid-column: span 2; grid-row: span 1; min-height: 220px; }
+  .gallery-item:nth-child(4) { grid-column: span 1; }
+  .gallery-item              { min-height: 160px; }
+
+  /* --- INSTAGRAM --- */
+  .insta-grid { grid-template-columns: repeat(3, 1fr); }
+  .insta-cell:nth-child(4),
+  .insta-cell:nth-child(5) { display: none; }
+
+  /* --- BOOKING ---
+     Stack contact info and form vertically
+  */
+  .booking-grid {
+    grid-template-columns: 1fr;
+    gap: 3rem;
+  }
+  .booking-form { padding: 2rem 1.5rem; }
+  .form-row { grid-template-columns: 1fr; }
+
+  /* --- FOOTER ---
+     2 columns for the link lists
+  */
+  .footer-grid {
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+  }
+  /* Brand block takes up both columns */
+  .footer-brand {
+    grid-column: span 2;
+  }
+  .footer-brand p { max-width: 100%; }
+
+  .footer-bottom {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.5rem;
+  }
+}
+
+
+/* ---- SMALL PHONES (screens up to 480px wide) ---- */
+@media (max-width: 480px) {
+
+  .section { padding: 3rem 0; }
+  .container { padding: 0 1rem; }
+
+  .hero-title { font-size: clamp(1.9rem, 9vw, 2.8rem); }
+  .hero-eyebrow { font-size: 0.55rem; letter-spacing: 0.2em; }
+
+  .hero-actions {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.8rem;
+  }
+  .btn-primary,
+  .btn-ghost {
+    width: 100%;
+    text-align: center;
+    padding: 0.9rem 1.5rem;
+  }
+
+  /* Only show 2 stats on very small screens */
+  .hero-stat:nth-child(3),
+  .hero-stat:nth-child(4) { display: none; }
+
+  /* Gallery: single column on tiny screens */
+  .gallery-grid {
+    grid-template-columns: 1fr;
+    grid-template-rows: auto;
+  }
+  .gallery-item:nth-child(1),
+  .gallery-item:nth-child(4) {
+    grid-column: span 1;
+    grid-row: span 1;
+  }
+  .gallery-item { min-height: 200px; }
+
+  /* Instagram: 2 columns */
+  .insta-grid { grid-template-columns: repeat(2, 1fr); }
+  .insta-cell:nth-child(3),
+  .insta-cell:nth-child(4),
+  .insta-cell:nth-child(5) { display: none; }
+
+  /* Footer: single column */
+  .footer-grid { grid-template-columns: 1fr; }
+  .footer-brand { grid-column: span 1; }
+
+  .rating-display { font-size: 3rem; }
+
+  .availability-banner { padding: 2rem 0; }
+  .avail-text h3 { font-size: 1.1rem; }
+  .avail-badge { padding: 0.7rem 1rem; }
+
+  .story-img-accent {
+    position: static;
+    width: 100%;
+    aspect-ratio: auto;
+    padding: 1.5rem;
+    margin-top: 1rem;
+    flex-direction: row;
+    gap: 1rem;
+  }
+}
