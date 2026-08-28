@@ -1,0 +1,618 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Abuja Hair Doctor — Elite Grooming</title>
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;900&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet" />
+
+  <!-- Our external stylesheet -->
+  <link rel="stylesheet" href="style.css" />
+</head>
+
+<body>
+
+  <!-- ===================== NAVIGATION ===================== -->
+  <nav>
+    <div class="nav-inner">
+      <a href="#hero" class="nav-logo">Abuja Hair Doctor</a>
+
+      <!-- Hamburger button — only visible on mobile -->
+      <button class="nav-toggle" id="navToggle" aria-label="Open menu">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+
+      <ul class="nav-links" id="navLinks">
+        <li><a href="#story"     onclick="closeMenu()">Our Story</a></li>
+        <li><a href="#services"  onclick="closeMenu()">Services</a></li>
+        <li><a href="#gallery"   onclick="closeMenu()">Gallery</a></li>
+        <li><a href="#authority" onclick="closeMenu()">Reviews</a></li>
+        <li><a href="#booking"   onclick="closeMenu()">Contact</a></li>
+      </ul>
+
+      <a href="#booking" class="nav-cta">Book Now</a>
+    </div>
+  </nav>
+
+  <!-- ===================== HERO ===================== -->
+  <section id="hero" class="section">
+    <div class="hero-bg"></div>
+    <div class="hero-lines"></div>
+
+    <div class="hero-image-frame">
+       <img src="images/hero-barber.jpg" alt="Master barber at work" />
+      <div class="hero-image-visual">
+        <!-- Decorative barber pole stripes -->
+        <div class="hv-stripes">
+          <div class="hv-stripe"></div>
+          <div class="hv-stripe hv-stripe--gold"></div>
+          <div class="hv-stripe"></div>
+          <div class="hv-stripe hv-stripe--gold"></div>
+          <div class="hv-stripe"></div>
+        </div>
+        <!-- Central monogram -->
+        <div class="hv-center">
+          <div class="hv-ring hv-ring--outer"></div>
+          <div class="hv-ring hv-ring--inner"></div>
+          <div class="hv-monogram">AHD</div>
+        </div>
+        <!-- Corner cross-hairs -->
+        <div class="hv-crosshair hv-crosshair--tl"></div>
+        <div class="hv-crosshair hv-crosshair--br"></div>
+        <!-- Bottom tag -->
+        <div class="hv-bottom-tag">
+          <span class="hv-tag-line">Est. Wuse 2, Abuja</span>
+          <span class="hv-tag-dot">✦</span>
+          <span class="hv-tag-line">Master Craftsman</span>
+        </div>
+      </div>
+      <div class="hero-image-tag">Signature Work</div>
+    </div>
+
+    <div class="container">
+      <div class="hero-content">
+        <p class="hero-eyebrow">Abuja's Premier Barber</p>
+
+        <h1 class="hero-title">
+          The Art of<br />
+          <span class="outline">Precision</span><br />
+          Grooming
+        </h1>
+
+        <p class="hero-tagline">
+          Where every cut is a statement, every fade a signature,
+          and every client leaves elevated.
+        </p>
+
+        <div class="hero-actions">
+          <a href="#booking" class="btn-primary"><span>Reserve Your Chair</span></a>
+          <a href="#story" class="hero-scroll-hint">
+            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+            Our Story
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <div class="hero-stat-strip">
+      <div class="container hero-stat-inner">
+        <div class="hero-stat">
+          <span class="stat-number">5.0</span>
+          <span class="stat-label">Google Rating</span>
+        </div>
+        <div class="hero-stat">
+          <span class="stat-number">24/7</span>
+          <span class="stat-label">Availability</span>
+        </div>
+        <div class="hero-stat">
+          <span class="stat-number">Top 5</span>
+          <span class="stat-label">Ranked in Abuja</span>
+        </div>
+        <div class="hero-stat">
+          <span class="stat-number">VIP</span>
+          <span class="stat-label">Mobile Service</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== MARQUEE ===================== -->
+  <div class="marquee-strip">
+    <div class="marquee-inner">
+      <span class="marquee-item">Precision Cuts</span>
+      <span class="marquee-item">Luxury Fades</span>
+      <span class="marquee-item">Beard Sculpting</span>
+      <span class="marquee-item">Color Work</span>
+      <span class="marquee-item">VIP Home Service</span>
+      <span class="marquee-item">Celebrity Clientele</span>
+      <span class="marquee-item">24/7 Availability</span>
+      <span class="marquee-item">Wuse 2, Abuja</span>
+      <span class="marquee-item">Precision Cuts</span>
+      <span class="marquee-item">Luxury Fades</span>
+      <span class="marquee-item">Beard Sculpting</span>
+      <span class="marquee-item">Color Work</span>
+      <span class="marquee-item">VIP Home Service</span>
+      <span class="marquee-item">Celebrity Clientele</span>
+      <span class="marquee-item">24/7 Availability</span>
+      <span class="marquee-item">Wuse 2, Abuja</span>
+    </div>
+  </div>
+
+  <!-- ===================== STORY ===================== -->
+  <section id="story" class="section bg-deep">
+    <div class="container">
+      <div class="story-grid">
+
+        <div class="story-image-block fade-in">
+          <div class="story-img-main">
+            <img src="images/story-photo.jpg" alt="Inside the Abuja Hair Doctor studio" />
+          </div>
+          <div class="story-img-accent">
+            <div class="accent-number">#1</div>
+            <div class="accent-label">Ranked Celebrity<br/>Barber in Abuja</div>
+          </div>
+        </div>
+
+        <div class="story-text fade-in">
+          <p class="section-eyebrow">The Journey</p>
+          <h2>Started With<br />Nothing. Built<br />An Empire.</h2>
+          <div class="divider"></div>
+          <p>
+            Behind every master craftsman is a story of relentless dedication.
+            Abuja Hair Doctor didn't inherit his throne — he earned it, one precise
+            cut at a time, rising from humble beginnings to become the most
+            sought-after barber in the capital.
+          </p>
+          <p>
+            Documented across the internet as Abuja's definitive authority in
+            luxury men's grooming, his name has become synonymous with
+            impeccable standards, celebrity trust, and a shop that feels more like
+            a private studio than a barbershop.
+          </p>
+          <blockquote>
+            <p>
+              "I started with nothing but the belief that I could be the best.
+              Every client who sits in my chair deserves my absolute best."
+            </p>
+            <cite>— Abuja Hair Doctor, YouTube Mini-Documentary</cite>
+          </blockquote>
+          <a href="#booking" class="btn-ghost">Book an Appointment</a>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== SERVICES ===================== -->
+  <section id="services" class="section">
+    <div class="container">
+
+      <div class="section-header fade-in">
+        <p class="eyebrow">What We Offer</p>
+        <h2>Crafted for the Discerning Man</h2>
+        <div class="divider center"></div>
+      </div>
+
+      <div class="services-grid fade-in">
+
+        <div class="service-card">
+          <div class="service-number">01</div>
+          <div class="service-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="6" cy="6" r="3"/><circle cx="6" cy="18" r="3"/><line x1="20" y1="4" x2="8.12" y2="15.88"/><line x1="14.47" y1="14.48" x2="20" y2="20"/><line x1="8.12" y1="8.12" x2="12" y2="12"/></svg>
+          </div>
+          <h3>Precision Cut</h3>
+          <p>Tailored to your face shape and personal style. Every line sharp, every edge defined.</p>
+          <div class="service-meta">
+            <span class="service-price">₦8,000</span>
+            <span class="service-duration">30 mins</span>
+          </div>
+          <span class="service-badge">Signature Service</span>
+        </div>
+
+        <div class="service-card">
+          <div class="service-number">02</div>
+          <div class="service-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2a10 10 0 1 0 10 10"/><path d="M12 6v6l4 2"/></svg>
+          </div>
+          <h3>Clean Fade</h3>
+          <p>Seamless gradients from skin to style. The hallmark of a true master barber.</p>
+          <div class="service-meta">
+            <span class="service-price">₦12,000</span>
+            <span class="service-duration">45 mins</span>
+          </div>
+          <span class="service-badge">Most Popular</span>
+        </div>
+
+        <div class="service-card">
+          <div class="service-number">03</div>
+          <div class="service-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+          </div>
+          <h3>Beard Sculpting</h3>
+          <p>From subtle shaping to full beard design. We craft the frame that elevates your face.</p>
+          <div class="service-meta">
+            <span class="service-price">₦6,000</span>
+            <span class="service-duration">20 mins</span>
+          </div>
+          <span class="service-badge">Premium</span>
+        </div>
+
+        <div class="service-card">
+          <div class="service-number">04</div>
+          <div class="service-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+          </div>
+          <h3>Color Work</h3>
+          <p>Expert toning, highlights, and grey blending for the modern man who demands more.</p>
+          <div class="service-meta">
+            <span class="service-price">₦15,000</span>
+            <span class="service-duration">60 mins</span>
+          </div>
+          <span class="service-badge">Available</span>
+        </div>
+
+        <div class="service-card vip">
+          <div class="vip-badge">VIP</div>
+          <div>
+            <div class="service-number">05</div>
+            <h3>Private Mobile Service</h3>
+            <p>
+              Can't come to us? We come to you. Our VIP mobile grooming service brings the full
+              studio experience directly to your home, hotel, or private event. Designed for
+              executives, celebrities, and high-profile clients with schedules that don't wait.
+            </p>
+            <div class="service-meta">
+              <span class="service-price">₦25,000+</span>
+              <span class="service-duration">90 mins</span>
+            </div>
+            <span class="service-badge">By Appointment · 24/7</span>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== 24/7 BANNER ===================== -->
+  <div class="availability-banner">
+    <div class="container">
+      <div class="availability-inner">
+        <div class="avail-text">
+          <h3>Open 24 Hours, 7 Days a Week</h3>
+          <p>Because greatness doesn't keep office hours.</p>
+        </div>
+        <div class="avail-badge">
+          <div class="avail-dot"></div>
+          <span>Available Now — Book via WhatsApp</span>
+        </div>
+        <a href="https://wa.me/2347039452577" class="btn-primary" target="_blank">
+          <span>WhatsApp Us</span>
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===================== AUTHORITY / REVIEWS ===================== -->
+  <section id="authority" class="section bg-deep">
+    <div class="container">
+      <div class="authority-grid">
+
+        <div class="fade-in">
+          <p class="eyebrow" style="margin-bottom:1rem;">Trusted Authority</p>
+          <div class="rating-display">5.0</div>
+          <div class="star-row">
+            <span class="star">★</span><span class="star">★</span>
+            <span class="star">★</span><span class="star">★</span>
+            <span class="star">★</span>
+          </div>
+          <p class="rating-sub">Google Rating · Verified</p>
+          <div class="divider" style="margin-top:1.5rem;"></div>
+          <h2 class="authority-heading">
+            Abuja's Most<br/>Recognised<br/>Master Barber
+          </h2>
+          <p class="authority-sub">
+            Featured across the city's leading publications and directories
+            as the definitive choice for elite men's grooming.
+          </p>
+        </div>
+
+        <div class="press-grid fade-in">
+          <div class="press-card">
+            <div class="quote-mark">"</div>
+            <p>Ranked among the Top 5 Barbing Salons in Abuja — a destination that consistently delivers precision, style, and an unmatched client experience.</p>
+            <span class="press-source">Abuja Lifestyle Directory</span>
+          </div>
+          <div class="press-card">
+            <div class="quote-mark">"</div>
+            <p>One of the Top 10 Barbing Salons Defining Male Grooming Excellence in Nigeria's capital. A standard every barbershop should aspire to.</p>
+            <span class="press-source">Nigerian Grooming Guide</span>
+          </div>
+          <div class="press-card">
+            <div class="quote-mark">"</div>
+            <p>A day with Abuja's celebrity barber shows you exactly what dedication and craft look like. From nothing to an empire — this is the real Abuja success story.</p>
+            <span class="press-source">YouTube Mini-Documentary</span>
+          </div>
+          <div class="press-card">
+            <div class="quote-mark">"</div>
+            <p>The go-to destination for Abuja's high-profile clientele. Operating 24/7 with a VIP mobile option — truly in a league of its own.</p>
+            <span class="press-source">Wuse 2 Business Directory</span>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== GALLERY ===================== -->
+  <section id="gallery" class="section">
+    <div class="container">
+
+      <div class="section-header fade-in">
+        <p class="eyebrow">Portfolio</p>
+        <h2>The Work Speaks</h2>
+        <div class="divider center"></div>
+      </div>
+
+      <div class="gallery-grid fade-in">
+        <div class="gallery-item">
+          <div class="gallery-placeholder">
+            <img src="images/gallery-signature-fade.png" alt="Close-up of a crisp signature fade with a sharp hairline" />
+          </div>
+          <div class="gallery-overlay"><span>Precision Fade</span></div>
+        </div>
+        <div class="gallery-item">
+          <div class="gallery-placeholder">
+            <img src="images/gallery-precision-cut.jpg" alt="Finished precision haircut, side profile" />
+          </div>
+          <div class="gallery-overlay"><span>Clean Cut</span></div>
+        </div>
+        <!-- BLANK: no beard photo uploaded yet — add a close-up shot
+             of a shaped/sculpted beard here -->
+        <div class="gallery-item">
+          <div class="gallery-placeholder"><span>BEARD SCULPT</span></div>
+          <div class="gallery-overlay"><span>Beard Design</span></div>
+        </div>
+        <!-- BLANK: no color-work photo uploaded yet — add a photo of
+             a toning/highlight treatment here -->
+        <div class="gallery-item">
+          <div class="gallery-placeholder"><span>COLOR WORK</span></div>
+          <div class="gallery-overlay"><span>Color Treatment</span></div>
+        </div>
+        <!-- BLANK: no shop-interior photo uploaded yet — add a wide
+             shot of the actual studio/chairs here -->
+        <div class="gallery-item">
+          <div class="gallery-placeholder"><span>SHOP INTERIOR</span></div>
+          <div class="gallery-overlay"><span>The Studio</span></div>
+        </div>
+      </div>
+
+      <div class="gallery-cta">
+        <a href="https://instagram.com/abujahairdoctor" target="_blank" class="btn-ghost">
+          View Full Portfolio on Instagram
+        </a>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ===================== INSTAGRAM ===================== -->
+  <section id="social" class="section bg-deep text-center">
+    <div class="container">
+
+      <div class="section-header fade-in">
+        <p class="eyebrow">Follow the Craft</p>
+        <h2>@abujahairdoctor</h2>
+        <div class="divider center"></div>
+        <p class="social-sub">
+          The latest transformations, celebrity cuts, and behind-the-scenes moments. Updated daily.
+        </p>
+      </div>
+
+      <div class="insta-grid fade-in">
+        <div class="insta-cell has-photo">
+          <img src="images/insta-session.png" alt="Barber giving a client a haircut" />
+          <span>REEL</span>
+        </div>
+        <div class="insta-cell has-photo">
+          <img src="images/insta-vip-mobile.jpg" alt="Abuja Hair Doctor with the VIP mobile service case at the airport" />
+          <span>POST</span>
+        </div>
+        <!-- BLANK: add a short clip or photo of a cut in progress -->
+        <div class="insta-cell"><span>REEL</span></div>
+        <!-- BLANK: add another finished-look or client photo -->
+        <div class="insta-cell"><span>POST</span></div>
+        <!-- BLANK: add a behind-the-scenes shot -->
+        <div class="insta-cell"><span>REEL</span></div>
+      </div>
+
+      <div class="insta-cta-wrap">
+        <a href="https://instagram.com/abujahairdoctor" target="_blank" class="instagram-cta">
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+          Follow on Instagram
+        </a>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ===================== BOOKING ===================== -->
+  <section id="booking" class="section">
+    <div class="container">
+      <div class="booking-grid">
+
+        <div class="fade-in">
+          <p class="booking-eyebrow">Reserve Your Appointment</p>
+          <h2 class="booking-heading">Ready For the<br />Experience?</h2>
+          <div class="divider"></div>
+          <p class="booking-sub">
+            Walk-ins are welcome, but appointments are preferred.
+            Reach out directly and we'll secure your chair.
+          </p>
+
+          <div class="contact-details">
+            <div class="contact-item">
+              <div class="contact-icon">
+                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 13a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.6 2.18h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 9.91a16 16 0 0 0 6.18 6.18l.91-.91a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+              </div>
+              <div class="contact-info">
+                <label>Phone / WhatsApp</label>
+                <p>0703 945 2577</p>
+              </div>
+            </div>
+            <div class="contact-item">
+              <div class="contact-icon">
+                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+              </div>
+              <div class="contact-info">
+                <label>Location</label>
+                <p>Close Downtown Restaurant,<br />5 Kampala Street,<br />Off Ademola Adetokunbo Crescent,<br />Wuse 2, Abuja.</p>
+              </div>
+            </div>
+            <div class="contact-item">
+              <div class="contact-icon">
+                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+              </div>
+              <div class="contact-info">
+                <label>Hours</label>
+                <p>Open 24 Hours · 7 Days a Week</p>
+              </div>
+            </div>
+            <div class="contact-item">
+              <div class="contact-icon">
+                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+              </div>
+              <div class="contact-info">
+                <label>Instagram</label>
+                <p>@abujahairdoctor</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="booking-form fade-in">
+          <h3>Book Your Session</h3>
+          <p class="form-sub">Response within 1 hour · VIP service available</p>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label>First Name</label>
+              <input type="text" placeholder="John" />
+            </div>
+            <div class="form-group">
+              <label>Last Name</label>
+              <input type="text" placeholder="Doe" />
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label>Phone Number</label>
+            <input type="tel" placeholder="+234 800 000 0000" />
+          </div>
+
+          <div class="form-group">
+            <label>Service</label>
+            <select>
+              <option value="">Select a service...</option>
+              <option>Precision Cut</option>
+              <option>Clean Fade</option>
+              <option>Beard Sculpting</option>
+              <option>Color Work</option>
+              <option>VIP Mobile Service</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label>Preferred Date &amp; Time</label>
+            <input type="datetime-local" />
+          </div>
+
+          <div class="form-group">
+            <label>Additional Notes</label>
+            <textarea placeholder="Tell us about the look you're going for..."></textarea>
+          </div>
+
+          <button class="submit-btn" id="submitBtn" type="button">Request Appointment</button>
+
+          <a
+            href="https://wa.me/2347039452577?text=Hi,%20I'd%20like%20to%20book%20an%20appointment%20at%20Abuja%20Hair%20Doctor."
+            target="_blank"
+            class="whatsapp-btn"
+          >
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+            Book Instantly via WhatsApp
+          </a>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== FOOTER ===================== -->
+  <footer>
+    <div class="container">
+      <div class="footer-grid">
+
+        <div class="footer-brand">
+          <span class="logo">Abuja Hair Doctor</span>
+          <p>Abuja's premier destination for elite men's grooming. Where precision meets artistry — every single time.</p>
+          <div class="divider footer-divider"></div>
+          <div class="social-links">
+            <a href="https://instagram.com/abujahairdoctor" target="_blank">Instagram</a>
+            <a href="https://wa.me/2347039452577"            target="_blank">WhatsApp</a>
+            <a href="https://youtube.com"                    target="_blank">YouTube</a>
+          </div>
+        </div>
+
+        <div class="footer-col">
+          <h4>Services</h4>
+          <ul>
+            <li><a href="#services">Precision Cut</a></li>
+            <li><a href="#services">Clean Fade</a></li>
+            <li><a href="#services">Beard Sculpting</a></li>
+            <li><a href="#services">Color Work</a></li>
+            <li><a href="#services">VIP Mobile</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h4>Navigate</h4>
+          <ul>
+            <li><a href="#story">Our Story</a></li>
+            <li><a href="#gallery">Portfolio</a></li>
+            <li><a href="#authority">Reviews</a></li>
+            <li><a href="#social">Instagram</a></li>
+            <li><a href="#booking">Book Now</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h4>Visit Us</h4>
+          <ul>
+            <li><a href="#">5 Kampala Street</a></li>
+            <li><a href="#">Off Ademola Adetokunbo</a></li>
+            <li><a href="#">Crescent, Wuse 2</a></li>
+            <li><a href="#">Abuja, Nigeria</a></li>
+            <li><a href="tel:07039452577">0703 945 2577</a></li>
+          </ul>
+        </div>
+
+      </div>
+
+      <div class="footer-bottom">
+        <p>© 2025 Abuja Hair Doctor · All Rights Reserved · Wuse 2, Abuja</p>
+        <p>Crafted for Excellence</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Our external JavaScript file -->
+  <script src="script.js"></script>
+
+</body>
+</html>
